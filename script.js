@@ -2,69 +2,63 @@
 var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
+
+const generatePassword = () => {
+  
+const uperCase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+const lowerCase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" ];
+const specialChar = ["!","@","#","$","%","^","&","*","(",")","-","+"];
+const numeric = [1,2,3,4,5,6,7,8,9];
+const options = [];
+let pw = "";
+
+const pwCount = parseInt(prompt("how many charractor would you like?"));
+
+if (!pwCount || pwCount < 8 || pwCount > 128 ){
+  alert ("does not meet requirement ")
+ generatePassword ();}
+ 
+ const userLower = confirm("do you want lower case?")
+ if (userLower) options.push(lowerCase);
+ const userUpper = confirm("do you want uper case?")
+ if (userUpper) options.push(uperCase);
+ const userSpecialChar = confirm("do you want special Character case?")
+ if (userSpecialChar) options.push(specialChar);
+ const userNumeric = confirm("do you want number case?")
+ if (userNumeric) options.push(numeric);
+
+ if (options.length === 0){
+   alert ("must chose at least 1 case!");
+   generatePassword();
+ }
+if (options.length === 1){
+  const option = options[0];
+  for (let i = 0; i < pwCount; i++) {
+    const randIndex = Math.floor(Math.random() * option.length);
+    pw += option[randIndex];
+  }
+  return pw;
+}
+while (pw.length !== pwCount){
+  for (let i = 0; i < options.length; i++) {
+    const currentOption = options[i];
+    const randIndex = Math.floor(Math.random()* currentOption.length);
+    pw += currentOption[randIndex];
+  if (pw.length === pwCount) 
+    return pw;
+  }
+}
+};
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
+  document.querySelector("#count").textContent= password.length;
 
 }
-
-
-// Add event listener to generate button
+// add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
-var uperCase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
-var lowerCase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" ]
-var specialChar = ["!","@","#","$","%","^","&","*","(",")","-","+"]
-var numeric = [1,2,3,4,5,6,7,8,9]
-var password = ""
-
-function Passwordmain(){
-var length = prompt(" How many char you like?")
-if (length <8 || length > 128)
-{ alert(" must be between 8-128")}
-else {
-  var upperCase = confirm("Would you like to use uppercase letters?")
-  var lowerCase = confirm("Would you like to use lowercase letters?")
-  var numeric = confirm("would you like to use numbers?")
-  var specialChar = confirm("would you like to use special characters?")
-}
-for (let i = 0; i < length; i++);
-{
-  if (uperCase === true){ 
-    password = password + toUpperCase( uperCase[Math.floor(Math.random()*uperCase.length)]
-    )}
-  if (lowerCase === true){
-    password = password + lowerCase[Math.floor(Math.random()*lowerCase.length)]
-    }
-    if (numeric === true){
-      password = password + numeric[Math.floor(Math.random()*numeric.length)]
-      }
-    if (specialChar === true){
-        password = password + specialChar[Math.floor(Math.random()*specialChar.length)]
-        }  
-}
-}
-function randomChar(arr){
-  var index = Math.floor(Math.random() * arr.length);
-var element = arr[index]
-return element 
-}
-function generatePassword(){
-  var option = Passwordmain()
-  var result = []
-  var possibleChar = []
-  var finalchar = []
-  console.log(possibleChar,finalchar,option, "heloo")
-  if (option.uperCase){
-    possibleChar = possibleChar.concat(uperCase)
-    finalchar.push(randomChar(uperCase))
-    console.log(possibleChar,finalchar,option, "hello")
-  }
-} 
-
-
  
 
 
